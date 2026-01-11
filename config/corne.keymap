@@ -574,7 +574,7 @@
             >;
         };
 
-        raise_layer {
+        symbol_layer {
             display-name = "SYMBOL";
             bindings = <
             //
