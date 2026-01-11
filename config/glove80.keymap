@@ -18,10 +18,14 @@
 #define SYMBOL 2
 #define WORK 3
 #define NUM 4
-
+#define MAGIC 5
 
 / {
     behaviors {
+        //////////////////////////////////
+        // BEGIN DEFAULT MOERGO BEHAVIORS
+        //////////////////////////////////
+        
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
         // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
         // layer_td: tap_dance_0 {
@@ -40,9 +44,16 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&rgb_ug_status_macro>;
         };
+        ////////////////////////////////
+        // END DEFAULT MOERGO BEHAVIORS
+        ////////////////////////////////
     };
 
     macros {
+        ///////////////////////////////
+        // BEGIN DEFAULT MOERGO MACROS
+        ///////////////////////////////
+        
         rgb_ug_status_macro: rgb_ug_status_macro_0 {
             label = "RGB_UG_STATUS";
             compatible = "zmk,behavior-macro";
@@ -86,6 +97,10 @@
                 = <&out OUT_BLE>,
                   <&bt BT_SEL 3>;
         };
+
+        /////////////////////////////
+        // END DEFAULT MOERGO MACROS
+        /////////////////////////////
     };
 };
 
@@ -103,13 +118,13 @@
         default_layer {
             bindings = <
             //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-               &kp EXCL      &kp STAR      XXX           &kp BSLH      &kp HASH                                                                                                                         XXX         XXX         XXX         XXX         XXX
+               &kp HASH      XXX           XXX           XXX           XXX                                                                                                                              XXX           XXX           XXX           XXX           XXX
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                      ╭─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &kp GRAVE     &kp N7        &kp N8        &kp N9        &kp N0        &kp N5                                                                                               &kp N6        &kp N1        &kp N2        &kp N3        &kp N4        XXX
+               XXX           XXX           XXX           XXX           XXX           XXX                                                                                                  XXX           XXX           XXX           XXX           XXX           XXX
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
                &kp TAB       &kp J         &kp C         &kp Y         &kp F         &kp K                                                                                                &kp Z         &kp L         &kp COMMA     &kp U         &kp Q         XXX
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &kp LSHIFT    &kp R         &kp S         &kp T         &kp H         &kp D                                                                                                &kp M         &kp N         &kp A         &kp I         &kp O         &kp SQT
+               &kp LSHIFT    &kp R         &kp S         &kp T         &kp H         &kp D                                                                                                &kp M         &kp N         &kp A         &kp I         &kp O         XXX   
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤╭─────────────┬─────────────┬─────────────╮╭─────────────┬─────────────┬─────────────╮├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
                XXX           &kp FSLH      &kp V         &kp G         &kp P         &kp B          XXX           &sk RALT      &sk LGUI       &sl SYMBOL    &sk LSHFT     &sl HYPER      &kp X         &kp W         &kp DOT       &kp MINUS     &kp SEMI      &kp PG_UP
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯├─────────────┼─────────────┼─────────────┤├─────────────┼─────────────┼─────────────┤╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
@@ -138,18 +153,19 @@
 
         magic_layer {
             bindings = <
+
             //╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮                                                                                                                  ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
-               &kp EXCL      &kp STAR      XXX         &kp BSLH      &kp HASH                                                                                                                         XXX         XXX         XXX         XXX         XXX
+               &bt BT_CLR    &none         &none         &none         &none                                                                                                                            &none         &none         &none         &none         &bt BT_CLR_ALL
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╮                                                                                      ╭─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &kp GRAVE     &kp N7        &kp N8        &kp N9        &kp N0        &kp N5                                                                                               &kp N6        &kp N1        &kp N2        &kp N3        &kp N4        XXX
+               &none         &none         &none         &none         &none         &none                                                                                                &none         &none         &none         &none         &none         &none
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &kp TAB       &kp J         &kp C         &kp Y         &kp F         &kp K                                                                                                &kp Z         &kp L         &kp COMMA     &kp U         &kp Q         XXX
+               &none         &rgb_ug RGB_SPI &rgb_ug RGB_SAI &rgb_ug RGB_HUI &rgb_ug RGB_BRI &rgb_ug RGB_TOG                                                                              &none         &none         &none         &none         &none         &none
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                                                                      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &kp LSHIFT    &kp R         &kp S         &kp T         &kp H         &kp D                                                                                                &kp M         &kp N         &kp A         &kp I         &kp O         &kp SQT
+               &bootloader   &rgb_ug RGB_SPD &rgb_ug RGB_SAD &rgb_ug RGB_HUD &rgb_ug RGB_BRD &rgb_ug RGB_EFF                                                                              &none         &none         &none         &none         &none         &bootloader
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤╭─────────────┬─────────────┬─────────────╮╭─────────────┬─────────────┬─────────────╮├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               XXX           &kp FSLH      &kp V         &kp G         &kp P         &kp B          XXX           &sk RALT      &sk LGUI       &sl SYMBOL    &sk LSHFT     &sl HYPER      &kp X         &kp W         &kp DOT       &kp MINUS     &kp SEMI      &kp PG_UP
+               &sys_reset    &none         &none         &none         &none         &none          &bt_2         &bt_3         &none          &none         &none         &none          &none         &none         &none         &none         &none         &sys_reset
             //├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────╯├─────────────┼─────────────┼─────────────┤├─────────────┼─────────────┼─────────────┤╰─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-               &to 1         &kp DOWN      &kp UP        &kp ESC       &kp TAB                      &kp E         &kp BSPC      &sk LCTRL      &sk LCTRL     &kp RET       &kp SPACE                    XXX           XXX           &kp LEFT      &kp RIGHT     &kp PG_DN
+               &none         &none         &none         &none         &none                        &bt_0         &bt_1         &out OUT_USB   &none         &none         &none                        &none         &none         &none         &none         &none
             //╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯              ╰─────────────┴─────────────┴─────────────╯╰─────────────┴─────────────┴─────────────╯              ╰─────────────┴─────────────┴─────────────┴─────────────┴─────────────╯
             >;
         };
